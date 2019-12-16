@@ -1,0 +1,22 @@
+<p>professionist-list works!</p>
+
+<div>
+    <table *ngIf="professionists && professionists.length">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pro of professionists">
+                <td> {{ pro.id }} </td>
+                <td> {{ pro.firstname }} </td>
+                <td> {{ pro.lastname }} </td>
+                <td> {{ pro.country }} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
