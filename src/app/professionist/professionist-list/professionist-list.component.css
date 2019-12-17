@@ -1,0 +1,13 @@
+.table{
+    background-color: lightgrey;
+}
+
+.head-table {
+    color: green;
+    font-size: medium;
+}
+
+.body-table{
+    color: blue;
+    font-style: italic;
+}

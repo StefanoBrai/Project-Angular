@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ResolvedStaticSymbol } from '@angular/compiler';
+import { ProfessionistService } from '../professionist.service';
+import { Professionist } from '../Professionist';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-professionist-list',
@@ -8,30 +11,57 @@ import { ResolvedStaticSymbol } from '@angular/compiler';
 })
 export class ProfessionistListComponent implements OnInit {
 
-  professionists = [
-    {
-      id: 1,
-      firstname: "Gianni",
-      lastname: "Rossi",
-      country: "ITA"
-    },
-    {
-      id: 2,
-      firstname: "Massimo",
-      lastname: "Luisi",
-      country: "USA"
-    },
-    {
-      id: 3,
-      firstname: "Francesca",
-      lastname: "Galliani",
-      country: "FRA"
-    }
-  ]
+  //private professionistService : ProfessionistService;
+  private professionists: Professionist[];
 
-  constructor() { }
+  constructor(private professionistSevice: ProfessionistService) {
+    //this.professionistService = professionistSevice;
+  }
+
+  insertProfessionist(): void {
+    let professionist: Professionist = {
+      id: 0,
+      firstname: "Mario",
+      lastname: "Bianchi",
+      country: "UK"
+    };
+
+    this.professionistSevice.insertProfessionist(professionist)
+      .subscribe(
+        p => {
+          console.log(p);
+          this.loadProfessionist();
+        });
+  }
+
+  deleteProfessionist(id: number): void {
+    this.professionistSevice.deleteProfessionist(id)
+      .subscribe(b => {
+        console.log(typeof b);
+        this.loadProfessionist();
+      });
+  }
+
+  updateProfessionist(id: number): void {
+    this.professionistSevice.updateProfessionist(id)
+    .subscribe( p => {
+      console.log("aggiornato");
+      this.loadProfessionist();
+    })
+  }
 
   ngOnInit() {
+    this.loadProfessionist();
+  }
+
+  loadProfessionist(): void {
+    let obs: Observable<Professionist[]> = this.professionistSevice.getProfessionist();
+    obs.subscribe(
+      ps => {
+        console.log(ps);
+        this.professionists = ps;
+      }
+    );
   }
 
 }

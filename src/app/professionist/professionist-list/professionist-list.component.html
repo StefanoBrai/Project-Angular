@@ -1,9 +1,7 @@
-<p>professionist-list works!</p>
-
 <div>
-    <table *ngIf="professionists && professionists.length">
+    <table class="table" *ngIf="professionists && professionists.length">
         <thead>
-            <tr>
+            <tr class="head-table">
                 <th>ID</th>
                 <th>Name</th>
                 <th>Surname</th>
@@ -11,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let pro of professionists">
+            <tr class="body-table" (click)="updateProfessionist(pro.id)" *ngFor="let pro of professionists">
                 <td> {{ pro.id }} </td>
                 <td> {{ pro.firstname }} </td>
                 <td> {{ pro.lastname }} </td>
@@ -19,4 +17,7 @@
             </tr>
         </tbody>
     </table>
+</div>
+<div>
+    <button (click) = 'insertProfessionist()'>InsertProfessionistTest</button>
 </div>
