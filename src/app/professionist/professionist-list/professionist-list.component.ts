@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, ElementRef } from '@angular/core';
 import { ResolvedStaticSymbol } from '@angular/compiler';
+import { FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
 import { ProfessionistService } from '../professionist.service';
 import { Professionist } from '../Professionist';
 import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-professionist-list',
@@ -10,23 +12,38 @@ import { Observable } from 'rxjs';
   styleUrls: ['./professionist-list.component.css']
 })
 export class ProfessionistListComponent implements OnInit {
+  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
   //private professionistService : ProfessionistService;
+  professionistForm: FormGroup;
+  professionist;
   private professionists: Professionist[];
+  errorMessage: string;
 
-  constructor(private professionistSevice: ProfessionistService) {
+  constructor(private professionistSevice: ProfessionistService, private fb: FormBuilder) {
     //this.professionistService = professionistSevice;
   }
 
   insertProfessionist(): void {
-    let professionist: Professionist = {
-      id: 0,
-      firstname: "Mario",
-      lastname: "Bianchi",
-      country: "UK"
-    };
+    // let professionist: Professionist = {
+    //   id: 0,
+    //   firstname: "Mario",
+    //   lastname: "Bianchi",
+    //   profession : "Developer",
+    //   birthdate : new Date("20191203"),
+    //   address : "Via Roma",
+    //   region : "Italy",
+    //   postalcode : "16159",
+    //   destination : 1,
+    //   phone : "321-321345",
+    //   mail : "mb@dev.it",
+    //   minAvailability : "3 weeks",
+    //   maxAvailability : "6"
+    // };
 
-    this.professionistSevice.insertProfessionist(professionist)
+    const pro = { ...this.professionist, ...this.professionistForm.value };
+
+    this.professionistSevice.insertProfessionist(pro)
       .subscribe(
         p => {
           console.log(p);
@@ -52,6 +69,20 @@ export class ProfessionistListComponent implements OnInit {
 
   ngOnInit() {
     this.loadProfessionist();
+    this.professionistForm = this.fb.group({
+      firstname : new FormControl(''),
+      lastname : new FormControl(''),
+      profession : new FormControl(''),
+      birthdate : new FormControl(''),
+      address : new FormControl(''),
+      region : new FormControl(''),
+      postalcode : new FormControl(''),
+      destination : new FormControl(),
+      phone : new FormControl(''),
+      mail : new FormControl(''),
+      minAvailability : new FormControl(''),
+      maxAvailability : new FormControl('')
+    });
   }
 
   loadProfessionist(): void {

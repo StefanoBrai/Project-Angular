@@ -9,17 +9,22 @@ import { ProfessionistListComponent } from './professionist/professionist-list/p
 import { InMemoryDbService, InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeRestService } from './fakeData/fake-rest.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfessionistEditComponent } from './professionist/professionist-edit/professionist-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     //ProfessionalListComponent,
-    ProfessionistListComponent
+    ProfessionistListComponent,
+    ProfessionistEditComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     InMemoryWebApiModule.forRoot(FakeRestService),  //Intercetta le chiamate http
     AppRoutingModule
   ],

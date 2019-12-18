@@ -14,7 +14,16 @@ export class ProfessionistService {
       id : id,
       firstname : "Franco",
       lastname : "Lorro",
-      country : "IND"
+      profession : "Developer",
+      birthdate : new Date("20191203"),
+      address : "Via Roma",
+      region : "Italy",
+      postalcode : "16159",
+      destination : 1,
+      phone : "321-321345",
+      mail : "mb@dev.it",
+      minAvailability : "3 weeks",
+      maxAvailability : "6 weeks"
     }
     const header = new HttpHeaders({'Content-Type' : 'application/json'});
     return this.http.put<Professionist>(this.url, professionist, {headers : header})
