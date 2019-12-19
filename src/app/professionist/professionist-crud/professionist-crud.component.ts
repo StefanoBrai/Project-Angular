@@ -1,6 +1,4 @@
-import { Component, OnInit, ViewChildren, ElementRef } from '@angular/core';
-import { ResolvedStaticSymbol } from '@angular/compiler';
-import { FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { ProfessionistService } from '../professionist.service';
 import { Professionist } from '../Professionist';
 import { Observable } from 'rxjs';
@@ -12,24 +10,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./professionist-crud.component.css']
 })
 export class ProfessionistCrudComponent implements OnInit {
-  
-  //private professionistService : ProfessionistService;
-  professionistForm: FormGroup;
+
   professionist: Professionist;
   private professionists: Professionist[];
   errorMessage: string;
 
-  constructor(private professionistSevice: ProfessionistService, private fb: FormBuilder) {
-    //this.professionistService = professionistSevice;
+  constructor(private professionistSevice: ProfessionistService) {
   }
 
-  insertProfessionist(): void {
-      const pro : Professionist = { ...this.professionistForm.value, ...{id: '0'} };
-
+  insertProfessionist(pro: Professionist): void {
     this.professionistSevice.insertProfessionist(pro)
       .subscribe(
         p => {
-          this.professionistForm.reset();
           console.log(p);
           this.loadProfessionist();
         });
@@ -43,60 +35,35 @@ export class ProfessionistCrudComponent implements OnInit {
       });
   }
 
-  chooseProfessionist(professionist : Professionist){
-      this.professionist = professionist;
-
-     this.professionistForm.patchValue({
-      
-      firstname : this.professionist.firstname,
-      lastname : this.professionist.lastname,
-      profession : this.professionist.profession,
-      birthdate : this.professionist.birthdate,
-      address : this.professionist.address,
-      region : this.professionist.region,
-      postalcode : this.professionist.postalcode,
-      destination :this.professionist.destination,
-      phone : this.professionist.phone,
-      mail : this.professionist.mail,
-      minAvailability : this.professionist.minAvailability,
-      maxAvailability : this.professionist.maxAvailability
-    });
+  selectProfessionist(professionist: Professionist) {
+    this.professionist = professionist;
   }
 
-  upsertProfessionist(): void {
+  upsertProfessionist(pro: Professionist): void {
     console.log("upserting professionist");
-    if(this.professionist && this.professionist.id){
-      this.updateProfessionist();
-    }else{
-      this.insertProfessionist();
+    if (this.professionist && this.professionist.id) {
+      this.updateProfessionist(pro);
+    } else {
+      this.insertProfessionist(pro);
     }
   }
-  updateProfessionist(): void {
-    let pro = { ...this.professionist, ...this.professionistForm.value};
+  updateProfessionist(pro: Professionist): void {
     this.professionistSevice.updateProfessionist(pro)
-    .subscribe( p => {
-      console.log("aggiornato");
-      this.loadProfessionist();
-      this.professionistForm.reset();
-      this.professionist = null;
-    })
+      .subscribe(p => {
+        console.log("aggiornato");
+        this.loadProfessionist();
+        this.professionist = null;
+      })
   }
+
+
+  cancel() : void {
+      this.professionist = null;
+  }
+
   ngOnInit() {
     this.loadProfessionist();
-    this.professionistForm = this.fb.group({
-      firstname : '',
-      lastname : '',
-      profession : '',
-      birthdate : '',
-      address : '',
-      region : '',
-      postalcode : '',
-      destination : '',
-      phone : '',
-      mail : '',
-      minAvailability : '',
-      maxAvailability : ''
-    });
+
   }
 
   loadProfessionist(): void {
@@ -107,10 +74,5 @@ export class ProfessionistCrudComponent implements OnInit {
         this.professionists = ps;
       }
     );
-  }
-
-  cancel(): void{
-    this.professionistForm.reset();
-    this.professionist = null;
   }
 }

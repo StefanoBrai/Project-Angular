@@ -1,84 +1,9 @@
-<div>
-    <table class="table" *ngIf="professionists && professionists.length">
-        <thead>
-            <tr class="head-table">
-                <th> ID </th>
-                <th> Name </th>
-                <th> Surname </th>
-                <th> Profession </th>
-                <th> Birthdate </th>
-                <th> Mail </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="body-table" *ngFor="let pro of professionists">
-                <td> {{ pro.id }} </td>
-                <td> {{ pro.firstname }} </td>
-                <td> {{ pro.lastname }} </td>
-                <td> {{ pro.profession }} </td>
-                <td> {{ pro.birthdate }} </td>
-                <td> {{ pro.mail }} </td>
-                <td>
-                    <button (click)="deleteProfessionist(pro.id)">Delete</button>
-                </td>
-                <td>
-                    <button (click)="chooseProfessionist(pro)">Update</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<!-- <div>
-    <button (click) = 'insertProfessionist()'> InsertProfessionistTest </button>
-</div> -->
-
-<br><br>
-
-<div class="form">
-    <form (ngSubmit)="upsertProfessionist()" [formGroup]="professionistForm">
-        <div>
-            <label for="firstname"> Firstname </label>
-            <input type="text" formControlName="firstname">
-            <br><br>
-            <label for="lastname"> Lastname </label>
-            <input type="text" formControlName="lastname">
-            <br><br>
-            <label for="profession"> Profession </label>
-            <input type="text" formControlName="profession">
-            <br><br>
-            <label for="birthdate"> Birthdate </label>
-            <input type="date" formControlName="birthdate">
-            <br><br>
-            <label for="address"> Address </label>
-            <input type="text" formControlName="address">
-            <br><br>
-            <label for="region"> Region </label>
-            <input type="text" formControlName="region">
-            <br><br>
-            <label for="postalcode"> Postalcode </label>
-            <input type="text" formControlName="postalcode">
-            <br><br>
-            <label for="destinationId"> Destination </label>
-            <select formControlName="destination">
-                <option value="1"> Europe </option>
-                <option value="2"> USA </option>
-                <option value="3"> Asia </option>
-            </select>
-            <br><br>
-            <label for="phone"> Phone </label>
-            <input type="text" formControlName="phone">
-            <br><br>
-            <label for="mail"> Mail </label>
-            <input type="text" formControlName="mail">
-            <br><br>
-            <label for="minAvailability"> Min Availability </label>
-            <input type="text" formControlName="minAvailability">
-            <br><br>
-            <label for="maxAvailability"> Max Availability </label>
-            <input type="text" formControlName="maxAvailability">
-            <br><br>
-            <button type="submit"> {{ professionist? "UPDATE" : "INSERT" }} </button>
-            <button type="reset"  (click)="cancel()">CANCEL</button>
-        </div>
-    </form>
-</div>
+<app-professionist-list 
+(delete) = deleteProfessionist($event)
+(select) = selectProfessionist($event)
+[professionists] = "professionists"></app-professionist-list>
+<app-professionist-upsert
+[professionist] = "professionist"
+(upsert) = upsertProfessionist($event)
+(cancel) = cancel()
+></app-professionist-upsert>

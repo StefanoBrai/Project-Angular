@@ -8,14 +8,18 @@ import { ProfessionistCrudComponent } from './professionist/professionist-crud/p
 import { InMemoryDbService, InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeRestService } from './fakeData/fake-rest.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfessionistListComponent } from './professionist/professionist-list/professionist-list.component';
+import { ProfessionistUpsertComponent } from './professionist/professionist-upsert/professionist-upsert.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     //ProfessionalListComponent,
-    ProfessionistCrudComponent
+    ProfessionistCrudComponent,
+    ProfessionistListComponent,
+    ProfessionistUpsertComponent
   ],
   imports: [
     BrowserModule,

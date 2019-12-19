@@ -1,0 +1,30 @@
+<div>
+    <table class="table" *ngIf="professionists && professionists.length">
+        <thead>
+            <tr class="head-table">
+                <th> ID </th>
+                <th> Name </th>
+                <th> Surname </th>
+                <th> Profession </th>
+                <th> Birthdate </th>
+                <th> Mail </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="body-table" *ngFor="let pro of professionists">
+                <td> {{ pro.id }} </td>
+                <td> {{ pro.firstname }} </td>
+                <td> {{ pro.lastname }} </td>
+                <td> {{ pro.profession }} </td>
+                <td> {{ pro.birthdate }} </td>
+                <td> {{ pro.mail }} </td>
+                <td>
+                    <button class="button" (click)="onDelete(pro.id)">Delete</button>
+                </td>
+                <td>
+                    <button class="button" (click)="onSelect(pro)">Update</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
