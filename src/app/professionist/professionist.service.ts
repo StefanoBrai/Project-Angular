@@ -9,24 +9,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ProfessionistService {
 
-  updateProfessionist(id : string) {
-    let professionist : Professionist = {
-      id : id,
-      firstname : "Franco",
-      lastname : "Lorro",
-      profession : "Developer",
-      birthdate : "1990",
-      address : "Via Roma",
-      region : "Italy",
-      postalcode : "16159",
-      destination : "1",
-      phone : "321-321345",
-      mail : "mb@dev.it",
-      minAvailability : "3 weeks",
-      maxAvailability : "6 weeks"
-    }
+  updateProfessionist(pro : Professionist) {
+    
     const header = new HttpHeaders({'Content-Type' : 'application/json'});
-    return this.http.put<Professionist>(this.url, professionist, {headers : header})
+    return this.http.put<Professionist>(this.url, pro, {headers : header})
   }
 
   deleteProfessionist(id: string): Observable<boolean> {

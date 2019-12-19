@@ -7,17 +7,23 @@
                 <th> Surname </th>
                 <th> Profession </th>
                 <th> Birthdate </th>
-                <th> Destination </th>
+                <th> Mail </th>
             </tr>
         </thead>
         <tbody>
-            <tr class="body-table" (click)="updateProfessionist(pro.id)" *ngFor="let pro of professionists">
+            <tr class="body-table" *ngFor="let pro of professionists">
                 <td> {{ pro.id }} </td>
                 <td> {{ pro.firstname }} </td>
                 <td> {{ pro.lastname }} </td>
                 <td> {{ pro.profession }} </td>
                 <td> {{ pro.birthdate }} </td>
                 <td> {{ pro.mail }} </td>
+                <td>
+                    <button (click)="deleteProfessionist(pro.id)">Delete</button>
+                </td>
+                <td>
+                    <button (click)="chooseProfessionist(pro)">Update</button>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -29,7 +35,7 @@
 <br><br>
 
 <div class="form">
-    <form (ngSubmit)="insertProfessionist()" [formGroup]="professionistForm">
+    <form (ngSubmit)="upsertProfessionist()" [formGroup]="professionistForm">
         <div>
             <label for="firstname"> Firstname </label>
             <input type="text" formControlName="firstname">
@@ -71,7 +77,8 @@
             <label for="maxAvailability"> Max Availability </label>
             <input type="text" formControlName="maxAvailability">
             <br><br>
-            <button type="submit"> INSERT </button>
+            <button type="submit"> {{ professionist? "UPDATE" : "INSERT" }} </button>
+            <button type="reset"  (click)="cancel()">CANCEL</button>
         </div>
     </form>
 </div>

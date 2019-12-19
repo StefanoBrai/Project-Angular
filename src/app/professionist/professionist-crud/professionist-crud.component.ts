@@ -7,16 +7,15 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-professionist-list',
-  templateUrl: './professionist-list.component.html',
-  styleUrls: ['./professionist-list.component.css']
+  selector: 'app-professionist-crud',
+  templateUrl: './professionist-crud.component.html',
+  styleUrls: ['./professionist-crud.component.css']
 })
-export class ProfessionistListComponent implements OnInit {
-  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
-
+export class ProfessionistCrudComponent implements OnInit {
+  
   //private professionistService : ProfessionistService;
   professionistForm: FormGroup;
-  professionist;
+  professionist: Professionist;
   private professionists: Professionist[];
   errorMessage: string;
 
@@ -25,27 +24,12 @@ export class ProfessionistListComponent implements OnInit {
   }
 
   insertProfessionist(): void {
-    // let professionist: Professionist = {
-    //   id: 0,
-    //   firstname: "Mario",
-    //   lastname: "Bianchi",
-    //   profession : "Developer",
-    //   birthdate : new Date("20191203"),
-    //   address : "Via Roma",
-    //   region : "Italy",
-    //   postalcode : "16159",
-    //   destination : 1,
-    //   phone : "321-321345",
-    //   mail : "mb@dev.it",
-    //   minAvailability : "3 weeks",
-    //   maxAvailability : "6"
-    // };
-
-    const pro = { ...this.professionist, ...this.professionistForm.value };
+      const pro : Professionist = { ...this.professionistForm.value, ...{id: '0'} };
 
     this.professionistSevice.insertProfessionist(pro)
       .subscribe(
         p => {
+          this.professionistForm.reset();
           console.log(p);
           this.loadProfessionist();
         });
@@ -59,14 +43,44 @@ export class ProfessionistListComponent implements OnInit {
       });
   }
 
-  updateProfessionist(id: string): void {
-    this.professionistSevice.updateProfessionist(id)
+  chooseProfessionist(professionist : Professionist){
+      this.professionist = professionist;
+
+     this.professionistForm.patchValue({
+      
+      firstname : this.professionist.firstname,
+      lastname : this.professionist.lastname,
+      profession : this.professionist.profession,
+      birthdate : this.professionist.birthdate,
+      address : this.professionist.address,
+      region : this.professionist.region,
+      postalcode : this.professionist.postalcode,
+      destination :this.professionist.destination,
+      phone : this.professionist.phone,
+      mail : this.professionist.mail,
+      minAvailability : this.professionist.minAvailability,
+      maxAvailability : this.professionist.maxAvailability
+    });
+  }
+
+  upsertProfessionist(): void {
+    console.log("upserting professionist");
+    if(this.professionist && this.professionist.id){
+      this.updateProfessionist();
+    }else{
+      this.insertProfessionist();
+    }
+  }
+  updateProfessionist(): void {
+    let pro = { ...this.professionist, ...this.professionistForm.value};
+    this.professionistSevice.updateProfessionist(pro)
     .subscribe( p => {
       console.log("aggiornato");
       this.loadProfessionist();
+      this.professionistForm.reset();
+      this.professionist = null;
     })
   }
-
   ngOnInit() {
     this.loadProfessionist();
     this.professionistForm = this.fb.group({
@@ -95,4 +109,8 @@ export class ProfessionistListComponent implements OnInit {
     );
   }
 
+  cancel(): void{
+    this.professionistForm.reset();
+    this.professionist = null;
+  }
 }
