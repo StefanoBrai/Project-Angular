@@ -51,7 +51,7 @@ export class ProfessionistListComponent implements OnInit {
         });
   }
 
-  deleteProfessionist(id: number): void {
+  deleteProfessionist(id: string): void {
     this.professionistSevice.deleteProfessionist(id)
       .subscribe(b => {
         console.log(typeof b);
@@ -59,7 +59,7 @@ export class ProfessionistListComponent implements OnInit {
       });
   }
 
-  updateProfessionist(id: number): void {
+  updateProfessionist(id: string): void {
     this.professionistSevice.updateProfessionist(id)
     .subscribe( p => {
       console.log("aggiornato");
@@ -70,18 +70,18 @@ export class ProfessionistListComponent implements OnInit {
   ngOnInit() {
     this.loadProfessionist();
     this.professionistForm = this.fb.group({
-      firstname : new FormControl(''),
-      lastname : new FormControl(''),
-      profession : new FormControl(''),
-      birthdate : new FormControl(''),
-      address : new FormControl(''),
-      region : new FormControl(''),
-      postalcode : new FormControl(''),
-      destination : new FormControl(),
-      phone : new FormControl(''),
-      mail : new FormControl(''),
-      minAvailability : new FormControl(''),
-      maxAvailability : new FormControl('')
+      firstname : '',
+      lastname : '',
+      profession : '',
+      birthdate : '',
+      address : '',
+      region : '',
+      postalcode : '',
+      destination : '',
+      phone : '',
+      mail : '',
+      minAvailability : '',
+      maxAvailability : ''
     });
   }
 

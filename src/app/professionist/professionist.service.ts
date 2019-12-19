@@ -9,17 +9,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ProfessionistService {
 
-  updateProfessionist(id : number) {
+  updateProfessionist(id : string) {
     let professionist : Professionist = {
       id : id,
       firstname : "Franco",
       lastname : "Lorro",
       profession : "Developer",
-      birthdate : new Date("20191203"),
+      birthdate : "1990",
       address : "Via Roma",
       region : "Italy",
       postalcode : "16159",
-      destination : 1,
+      destination : "1",
       phone : "321-321345",
       mail : "mb@dev.it",
       minAvailability : "3 weeks",
@@ -29,7 +29,7 @@ export class ProfessionistService {
     return this.http.put<Professionist>(this.url, professionist, {headers : header})
   }
 
-  deleteProfessionist(id: number): Observable<boolean> {
+  deleteProfessionist(id: string): Observable<boolean> {
     return this.http.delete<boolean>(`${this.url}/${id}`);
   }
 
@@ -37,7 +37,7 @@ export class ProfessionistService {
 
   insertProfessionist(professionist: Professionist): Observable<Professionist> {
     const header = new HttpHeaders({'Content-Type' : 'application/json'});
-    professionist.id = ++this.counter;
+    professionist.id = (++this.counter).toString();
     return this.http.post<Professionist>(this.url, professionist, {headers : header});
   }
   
