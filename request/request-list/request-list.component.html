@@ -1,0 +1,24 @@
+<div>
+    <table class="table" *ngIf="requests && requests.length">
+        <thead>
+            <tr class="head-table">
+                <th> ID </th>
+                <th> Destination </th>
+                <th> Skill required </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="body-table" *ngFor="let req of requests">
+                <td> {{ req.id }} </td>
+                <td> {{ req.destination }} </td>
+                <td> {{ req.skill }} </td>
+                <td>
+                    <button class="button" (click)="onDelete(req.id)">Delete</button>
+                </td>
+                <td>
+                    <button class="button" (click)="onSelect(req)">Update</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,19 @@
+<div class="form">
+    <form (ngSubmit)="upsert()" [formGroup]="requestForm">
+        <div>
+            <label for="destinationId"> Destination </label>
+            <select formControlName="destination">
+                <option value="1"> Europe </option>
+                <option value="2"> USA </option>
+                <option value="3"> Asia </option>
+            </select>
+            <br><br>
+            <label for="skill"> Skill </label>
+            <input type="text" formControlName="skill">
+            <br><br>
+            <button class="button" type="submit"> {{ request? "UPDATE" : "INSERT" }} </button>
+            <button class="button" type="reset"  (click)="cancel()">CANCEL</button>
+        </div>
+    </form>
+</div>
+
