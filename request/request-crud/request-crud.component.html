@@ -1,9 +1,0 @@
-<app-request-list 
-(delete) = deleteRequest($event)
-(select) = selectRequest($event)
-[requests] = "requests"></app-request-list>
-<app-request-upsert
-[request] = "request"
-(upsert) = upsertRequest($event)
-(cancel) = cancel()
-></app-request-upsert>

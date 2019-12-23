@@ -1,5 +1,6 @@
 <div>
     <table class="table" *ngIf="professionists && professionists.length">
+        <caption>Professionists List</caption>
         <thead>
             <tr class="head-table">
                 <th> ID </th>
@@ -23,7 +24,7 @@
                 </td>
                 <td>
                     <button class="button" (click)="onSelect(pro)">Update</button>
-                </td>
+                </td>                
             </tr>
         </tbody>
     </table>

@@ -14,8 +14,14 @@ export class ProfessionistCrudComponent implements OnInit {
   professionist: Professionist;
   private professionists: Professionist[];
   errorMessage: string;
+  showList: boolean = false;
 
   constructor(private professionistSevice: ProfessionistService) {
+  }
+
+
+  displayList(): void {
+    this.showList = !this.showList;
   }
 
   insertProfessionist(pro: Professionist): void {
@@ -57,8 +63,8 @@ export class ProfessionistCrudComponent implements OnInit {
   }
 
 
-  cancel() : void {
-      this.professionist = null;
+  cancel(): void {
+    this.professionist = null;
   }
 
   ngOnInit() {

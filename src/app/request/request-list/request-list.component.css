@@ -5,11 +5,7 @@
     border: 1px solid #eee;
     
 }
-.choose-div{
-    font-size: medium;
-    text-align: center;
 
-}
 .head-table {
     font-size: medium;
     text-align: center;
@@ -29,8 +25,4 @@
     border-radius: 20px;
     border: 1px solid #1976d2;
     background-color: rgb(212, 212, 212);
-}
-.showList{
-    text-align: center;
-    align-content: center;
 }

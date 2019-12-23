@@ -13,15 +13,24 @@ export class RequestListComponent implements OnInit {
     = new EventEmitter<string>();
   @Output("select") selectEmitter: EventEmitter<Request>
     = new EventEmitter<Request>();
+  @Output("candidature") candidateEmitter: EventEmitter<Request>
+    = new EventEmitter<Request>();
+
   constructor() { }
+
   onDelete(id: string) {
     this.deleteEmitter.emit(id);
   }
+
   onSelect(req: Request) {
     this.selectEmitter.emit(req);
   }
-  ngOnInit() {
+
+  onCandidature(req: Request){
+    this.candidateEmitter.emit(req)
   }
 
+  ngOnInit() {
+  }
 
 }

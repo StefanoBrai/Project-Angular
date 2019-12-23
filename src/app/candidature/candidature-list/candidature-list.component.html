@@ -1,0 +1,21 @@
+<div>
+    <table class="table" *ngIf="candidatures && candidatures.length">
+        
+        <thead>
+            <tr class="head-table">
+                <th> ID </th>
+                <th> Professionist </th>
+                <th> Request </th>
+                <th> Date of Signing </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="body-table" *ngFor="let cand of candidatures">
+                <td> {{ cand.id }} </td>
+                <td> {{ cand.prof.firstname}} {{cand.prof.lastname }} </td>
+                <td> {{ cand.req.projectName }}, {{ cand.req.id }} </td>
+                <td> {{ cand.dateOfSigning }} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

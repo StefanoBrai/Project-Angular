@@ -1,9 +1,18 @@
+
+<div>
+    <button class="button" (click)="displayList()">{{showList? 'Hide ': 'Show '}} List</button>
+</div>
+<div *ngIf="showList">
 <app-professionist-list 
 (delete) = deleteProfessionist($event)
 (select) = selectProfessionist($event)
 [professionists] = "professionists"></app-professionist-list>
+</div> 
+<br>
+<br>
+
 <app-professionist-upsert
 [professionist] = "professionist"
 (upsert) = upsertProfessionist($event)
-(cancel) = cancel()
-></app-professionist-upsert>
+(cancel) = cancel()>
+</app-professionist-upsert>

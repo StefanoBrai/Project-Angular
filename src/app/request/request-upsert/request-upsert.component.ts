@@ -15,12 +15,12 @@ export class RequestUpsertComponent implements OnInit {
     this._request = value;
     if (this._request) {
       this.requestForm.patchValue({
+        companyName: this.request.companyName,
+        projectName: this.request.projectName,
         destination: this.request.destination,
         skill: this.request.skill,
       });
     }
-    
-
   }
 
   get request(): Request {
@@ -45,7 +45,11 @@ export class RequestUpsertComponent implements OnInit {
 
   ngOnInit() {
     this.requestForm = this.fb.group({
-      destination: ''
+      companyName: '',
+      projectName: '',
+      destination: '',
+      skill: '',
+      candidature: '0'
     });
   }
 
