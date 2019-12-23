@@ -1,0 +1,93 @@
+<div>
+    <table class="table">
+        <caption>Professionist Details</caption>
+        <thead>
+                <tr>
+                    <th> ID </th>
+                <td> {{ pro.id }}</td>
+            </tr>
+
+                <tr>
+                    <th> Name </th>
+                <td> {{ pro.firstname }} </td>
+            </tr>
+
+                <tr>
+                    <th> Surname </th>
+                <td> {{ pro.lastname }} </td>
+            </tr>
+
+                <tr>
+                    <th> Profession </th>
+                <td> {{ pro.profession }} </td>
+            </tr>
+
+                <tr>
+                    <th> Birthdate </th>
+                <td> {{ pro.birthdate }} </td>
+            </tr>
+
+                <tr>
+                    <th> Mail </th>
+                <td> {{ pro.mail }} </td>
+            </tr>
+
+                <tr>
+                    <th> Address </th>
+                <td> {{ pro.address }}</td>
+            </tr>
+
+                <tr>
+                    <th> Region </th>
+                <td> {{ pro.region }} </td>
+            </tr>
+
+                <tr>
+                    <th> Postal Code</th>
+                <td> {{ pro.postalcode }} </td>
+            </tr>
+
+                <tr>
+                    <th> Country </th>
+                <td> {{ pro.destination }} </td>
+            </tr>
+
+                <tr>
+                    <th> Phone </th>
+                <td> {{ pro.phone }} </td>
+            </tr>
+
+                <tr>
+                    <th> Availability </th>
+                <td> {{ pro.minAvailability }} </td>
+            </tr>
+
+                <tr>
+                    <th> Max Availability</th>
+                <td> {{ pro.maxAvailability }} </td>
+            </tr>
+
+            <!-- </tr> -->
+        </thead>
+        <!-- <tbody>
+            <tr class="body-table">
+                <td> {{ pro.id }}</td>
+                <td> {{ pro.firstname }} </td>
+                <td> {{ pro.lastname }} </td>
+                <td> {{ pro.profession }} </td>
+                <td> {{ pro.birthdate }} </td>
+                <td> {{ pro.mail }} </td>
+                <td> {{ pro.address }}</td>
+                <td> {{ pro.region }} </td>
+                <td> {{ pro.postalcode }} </td>
+                <td> {{ pro.destination }} </td>
+                <td> {{ pro.phone }} </td>
+                <td> {{ pro.minAvailability }} </td>
+                <td> {{ pro.maxAvailability }} </td> -->
+                <td>
+                    <button class="button" (click)="onBack()">Back</button>
+                </td>
+            <!-- </tr> -->
+        <!-- </tbody> -->
+    </table>
+</div>

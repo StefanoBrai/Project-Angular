@@ -16,7 +16,3 @@
 <div>
     <button class="button" (click)="displayCandidatureList()">{{showCandidature? 'Hide ': 'Show '}} Candidature's List</button>
 </div>
-<div *ngIf="showCandidature">
-<app-candidature-list
-[candidatures]= "candidatures"></app-candidature-list>
-</div>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Professionist } from './Professionist';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { catchError, tap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'  //Questo servizio è disponibile dalla root in giù, altrimenti si mette il nome di dove lo si vuole disponibile
@@ -34,7 +34,15 @@ export class ProfessionistService {
   public getProfessionist(): Observable<Professionist[]> {    //any è il tipo base
     return this.http.get<Professionist[]>(this.url);
   }
-
+  public getProfessionistById(id: string): Observable<Professionist> {
+    
+    const urlById = `${this.url}/${id}`;
+    return this.http.get<Professionist>(urlById)
+      .pipe(
+        tap(data => console.log('getProduct: ' + JSON.stringify(data)))
+      );
+    
+  }
   constructor(private http: HttpClient) { }
 
 }

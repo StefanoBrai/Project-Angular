@@ -15,6 +15,7 @@ import { RequestCrudComponent } from './request/request-crud/request-crud.compon
 import { RequestListComponent } from './request/request-list/request-list.component';
 import { RequestUpsertComponent } from './request/request-upsert/request-upsert.component';
 import { CandidatureListComponent } from './candidature/candidature-list/candidature-list.component';
+import { ProfessionistDetailsComponent } from './professionist/professionist-details/professionist-details.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CandidatureListComponent } from './candidature/candidature-list/candida
     ProfessionistCrudComponent,
     ProfessionistListComponent,
     ProfessionistUpsertComponent,
+    ProfessionistDetailsComponent,
     RequestCrudComponent,
     RequestListComponent,
     RequestUpsertComponent,

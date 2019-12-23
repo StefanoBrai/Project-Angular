@@ -13,7 +13,11 @@
         </thead>
         <tbody>
             <tr class="body-table" *ngFor="let pro of professionists">
-                <td> {{ pro.id }} </td>
+                <td>
+                    <a [routerLink]="['/professionist', pro.id]">
+                        {{ pro.id }}
+                    </a>
+                </td>
                 <td> {{ pro.firstname }} </td>
                 <td> {{ pro.lastname }} </td>
                 <td> {{ pro.profession }} </td>
@@ -24,7 +28,7 @@
                 </td>
                 <td>
                     <button class="button" (click)="onSelect(pro)">Update</button>
-                </td>                
+                </td>
             </tr>
         </tbody>
     </table>
