@@ -35,7 +35,7 @@ import { ProfessionistDetailsComponent } from './professionist/professionist-det
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    InMemoryWebApiModule.forRoot(FakeRestService),  //Intercetta le chiamate http
+    // InMemoryWebApiModule.forRoot(FakeRestService),  //Intercetta le chiamate http
     AppRoutingModule
   ],
   providers: [],

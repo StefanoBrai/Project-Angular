@@ -29,7 +29,7 @@ export class ProfessionistService {
   
   professionistsArray: Professionist[];
 
-  private url: string = "http://localhost/api/professionists";
+  private url: string = "https://localhost:44375/api/professionist/";
 
   public getProfessionist(): Observable<Professionist[]> {    //any è il tipo base
     return this.http.get<Professionist[]>(this.url);
